@@ -1,13 +1,12 @@
 package hello.core.order;
 
 import hello.core.discount.DiscountPolicy;
-import hello.core.discount.FixDiscountPolicy;
 import hello.core.member.*;
 
 public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository = new MemoryMemberRepository();
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    private DiscountPolicy discountPolicy; // DIP를 지키기 위해 누군가가 구현체를 주입해줘야함 (FixDiscountPolicy or RateDiscountPolicy)
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
