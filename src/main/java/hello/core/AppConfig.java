@@ -30,21 +30,32 @@ public class AppConfig {
     }
     */
 
+
+    /*
+    * memberRepository를 두번 호출해서 싱글톤이 깨지는것 처럼 보인다.
+    * 하지만 @Configuration을 선언 함으로서 스프링 내부적으로 instance의 생성 여부에 따라
+    * instance를 return 해줘서 싱글톤을 유지해준다.
+    * */
+
+
     // 역할
     @Bean
     public MemberService memberService() {
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
 
     // 구현
     @Bean
     public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
     // 역할
     @Bean
     public OrderService orderService() {
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
