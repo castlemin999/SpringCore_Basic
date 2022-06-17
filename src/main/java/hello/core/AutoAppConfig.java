@@ -1,8 +1,12 @@
 package hello.core;
 
+import hello.core.member.MemberRepository;
+import hello.core.member.MemoryMemberRepository;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
+import org.springframework.stereotype.Component;
 
 @Configuration
 
@@ -18,5 +22,10 @@ import org.springframework.context.annotation.FilterType;
 )
 public class AutoAppConfig {
 
-
+    // 자동으로 등록 된 Bean과 수동으로 등록한 Bean이 충돌 날 경우 수동이 우선권을 갖는다.
+    // 하지만 규모가 커지게 되면 찾기가 힘들어지기 때문에 SpringBoot에서는 에러를 발생시킨다.
+//    @Bean(name = "memoryMemberRepository")
+//    MemberRepository memberRepository() {
+//        return new MemoryMemberRepository();
+//    }
 }
