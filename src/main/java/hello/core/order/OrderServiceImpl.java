@@ -1,5 +1,6 @@
 package hello.core.order;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.discount.DiscountPolicy;
 import hello.core.member.*;
 import lombok.RequiredArgsConstructor;
@@ -49,7 +50,7 @@ public class OrderServiceImpl implements OrderService{
     // @Autowired가 생략 되어도 @Component가 있는 클래스의 생성자 메서드가 하나일때는 스프링이 알아서 Autowired 처리 해준다.
     // Lombok @RequiredArgsConstructor을 통해 생성자 자동 생성
     @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
